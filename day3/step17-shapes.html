@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Shape</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+            margin: 50px auto;
+            display: block;
+            background-color: rgb(173, 144, 46);
+            
+        }
+    </style>
+</head>
+<body>
+    <canvas id="can" height="500" width="500"></canvas>
+    <script>
+        var ctx=document.getElementById("can").getContext("2d")
+        ctx.fillStyle="green";
+        ctx.beginPath();
+        ctx.arc(150,150,100,0,(Math.PI/180)*360, true);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+        
+        ctx.fillStyle="grey";
+        ctx.beginPath();
+        ctx.arc(250,150,100,0,(Math.PI/180)*360, true);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill()
+
+        ctx.fillStyle="blue";
+        ctx.beginPath();
+        ctx.arc(350,150,100,0,(Math.PI/180)*360, true);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+
+        ctx.fillStyle="red";
+        ctx.beginPath();
+        ctx.arc(200,270,100,0,(Math.PI/180)*360, true);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+
+        
+        ctx.fillStyle="yellow";
+        ctx.beginPath();
+        ctx.arc(300,270,100,0,(Math.PI/180)*360, true);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.font = "bold 40px arial";
+        ctx.fillStyle="blue";
+        ctx.fillText("OLYMPICS 2022",100,440);
+        
+    </script>
+</body>
+</html>
