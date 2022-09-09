@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Current Time:<output id="op"></output></h1>
+    <h1>Volume:<output id="volop"></output></h1>
+    <audio width="550" height="400" loop id="aud">
+        <source src="media/pasoori.mp3">
+    </audio>
+    <button onclick="playaud()">Play</button>
+    <button onclick="pauseaud()">Pause</button>
+    <button onclick="stopaud()">Stop</button>
+    <button onclick="rewindaud()">Rewind</button>
+    <button onclick="increaseVol()">Increase Volume</button>
+    <button onclick="decreaseVol()">Decrease Volume</button>
+    <script>
+        setInterval(function(){
+            document.getElementById("op").value= document.getElementById("aud").currentTime;
+            document.getElementById("volop").value= document.getElementById("aud").volume;
+        },10);
+        
+        function playaud(){
+            document.getElementById("aud").play();
+            document.getElementById("aud").volume = 0.5;
+        }
+        function pauseaud(){
+            document.getElementById("aud").pause();
+        }
+        function stopaud(){
+            document.getElementById("aud").currentTime=0;
+            document.getElementById("aud").pause();
+        }
+        function rewindaudi(){
+            document.getElementById("aud").currentTime = document.getElementById("aud").currentTime-0.1;
+            document.getElementById("aud").pause();
+        }
+        function increaseVol(){
+            document.getElementById("aud").volume = document.getElementById("aud").volume+0.1;
+        }
+        function decreaseVol(){
+            document.getElementById("aud").volume = document.getElementById("aud").volume-0.1;
+        }
+    </script>
+</body>
+</html>
