@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        window.onload=addUsersList
-        function storeInfo(){
-            var info={
-                uname: document.getElementById("uname").value,
-                uage:document.getElementById("umail").value,
-                uphone:document.getElementById("uphone").value
-            };
-            // console.log("User Info", info);
-            localStorage.setItem("user"+localStorage.length,JSON.stringify(info));
-        function addUsersList(){
-            for (var i = 0; i <= localStorage.length; i++)   
-            {
-                localStorage.setItem("user",JSON.stringify(info));
-            } 
 
+        function storeInfo() {
+            var info = {
+                uname: document.getElementById("uname").value,
+                umail: document.getElementById("umail").value,
+                uphone: document.getElementById("uphone").value
+            }
+            localStorage.setItem("user" + localStorage.length, JSON.stringify(info));
         }
-    };
-    function clearInfo(){
+        function clearInfo() {
             localStorage.clear();
+        }
+        function getKeyName() {
+            document.getElementById("op").innerText = localStorage.key(0);
+        }
+        function getLength() {
+            document.getElementById("op").innerText = localStorage.length;
+        }
+
+        window.onload = function () {
+            let output = "";
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let user = JSON.parse(localStorage.getItem(key));
+                output += `<li>${user.uname} | ${user.umail} | ${user.uphone}</li>`;
+            }
+            if (output) {
+                document.getElementById("userList").innerHTML = "<ul>" + output + "</ul>";
+            }
         }
     </script>
 </head>
+
 <body>
     <table>
-        <tbody>
-            <tr>
-                <th>User Name</th>
-                <td><input id="uname" name="uname" type="text"/></td>
-            </tr>
-            <tr>
-                <th>User Email</th>
-                <td><input id="umail" name="email" type="email"/></td>
-            </tr>
-            <tr>
-                <th>User Phone</th>
-                <td><input id="uphone" name="phone" type="tel"/></td>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-                <td><input onclick="storeInfo()" type="submit" value="Store Info"/></td>
-            </tr>
-        </tbody>
+        <tr>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Phone</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="uname" id="uname"></td>
+            <td><input type="email" name="email" id="umail"></td>
+            <td><input type="tel" name="phone" id="uphone"></td>
+            <td><input onclick="storeInfo()" type="button" value="Store Info"></td>
+        </tr>
     </table>
     <button onclick="clearInfo()">Clear</button>
+    <button onclick="getKeyName()">Get Key Name</button>
+    <button onclick="getLength()">Get Number of Stored Users</button>
+    <h3>Output based on button clicks: <span id="op"></span></h3>
+    <h3>Stored User:</h3>
+    <div id="userList"></div>
 </body>
+
 </html>
