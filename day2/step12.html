@@ -1,55 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function storeInfo(){
-            var info={
+        function storeInfo() {
+            var info = {
                 uname: document.getElementById("uname").value,
-                uage:document.getElementById("umail").value,
-                uphone:document.getElementById("uphone").value
-            };
-            // console.log("User Info", info);
-            // localStorage.setItem("user",JSON.stringify(info));
-            localStorage.setItem("user",JSON.stringify(info));
-        };
-        function clearInfo(){
-            localStorage.clear();
+                umail: document.getElementById("umail").value,
+                uphone: document.getElementById("uphone").value
+            }
+            localStorage.setItem("user", JSON.stringify(info));
+            info = {
+                uname: "",
+                umail: "",
+                uphone: ""
+            }
         }
-        function getKeyName(){
-            alert( localStorage.key(0) );
+        function clearInfo() {
+            if (localStorage.length == 0) {
+                document.getElementById("clear").innerText = `Nothing to clear!!`
+            }
+            else {
+                localStorage.clear();
+
+                document.getElementById("clear").innerText = `Local Storage cleared!`
+            }
+
         }
-        function getLength(){
-            alert( localStorage.length );
+        function getKeyName() {
+            document.getElementById("op").innerText = localStorage.key(0);
+            if (localStorage.length == 0) {
+                document.getElementById("op").innerText = `Nothing is there!`
+            }
+        }
+        function getLength() {
+            document.getElementById("op").innerText = localStorage.length;
         }
     </script>
 </head>
+
 <body>
     <table>
-        <tbody>
-            <tr>
-                <th>User Name</th>
-                <td><input id="uname" name="uname" type="text"/></td>
-            </tr>
-            <tr>
-                <th>User Email</th>
-                <td><input id="umail" name="email" type="email"/></td>
-            </tr>
-            <tr>
-                <th>User Phone</th>
-                <td><input id="uphone" name="phone" type="tel"/></td>
-            </tr>
-            <tr>
-                <th>&nbsp;</th>
-                <td><input onclick="storeInfo()" type="submit" value="Store Info"/></td>
-            </tr>
-        </tbody>
+        <tr>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Phone</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td><input type="text" name="uname" id="uname"></td>
+            <td><input type="email" name="email" id="umail"></td>
+            <td><input type="tel" name="phone" id="uphone"></td>
+            <td><input onclick="storeInfo()" type="button" value="Store Info"></td>
+        </tr>
     </table>
-    <button onclick="clearInfo()">Clear</button>
-     <button onclick="getKeyName()">get key name</button>
-     <button onclick="getLength()">get number of stored users</button>
+    <hr>
+    <button onclick="clearInfo()">Clear</button> &nbsp;<span id="clear"></span>
+    <hr>
+    <button onclick="getKeyName()">Get Key Name</button>
+    <button onclick="getLength()">Get Number of Stored Users</button>
+    &nbsp; <span id="op"></span>
 </body>
+
 </html>
